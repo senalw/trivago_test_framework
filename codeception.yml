@@ -1,0 +1,31 @@
+paths:
+    tests: tests
+    output: tests/_output
+    data: tests/_data
+    support: tests/_support
+    envs: tests/_envs
+actor_suffix: Tester
+settings:
+    colors: false
+    memory_limit: 1024M
+    bootstrap: _bootstrap.php
+extensions:
+    enabled:
+        - Codeception\Extension\RunProcess:
+            - java -jar "drivers/selenium-server-standalone-3.8.1.jar"
+            - cd drivers & chromedriver --url-base=/wd/hub
+
+        - Codeception\Extension\RunFailed
+        - Codeception\Extension\Logger
+        - Codeception\Extension\TestListener
+#        - Codeception\Extension\Recorder
+
+    config:
+          max_files:5 #logger config
+modules:
+    enabled:
+        - tests\codeception\common\_support\Helper\AcceptanceHelper
+#reporters:
+#    xml: Codeception\PHPUnit\Log\JUnit
+#    html: Codeception\PHPUnit\ResultPrinter\HTML
+#    report: Codeception\PHPUnit\ResultPrinter\Report

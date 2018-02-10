@@ -1,0 +1,20 @@
+{
+    "company":[
+        {
+            "name": "trivago assignment",
+            "version": "1.0.0.1"
+        }
+    ],
+    "author":[
+        {
+            "name":"W.A. Senal Dulanjala Weerasinghe",
+            "role":"DevOps Engineer"
+        }
+    ],
+    "require-dev": {
+    },
+    "require": {
+        "codeception/codeception": "2.3.8",
+        "monolog/monolog": "2.0.x-dev"
+    }
+}
