@@ -94,7 +94,7 @@ class TrivagoHomePage extends \AcceptanceTester
         $this->wait(10);
         $this->switchToNextTab(1);
         $this->waitForJS('return !!window.jQuery && window.jQuery.active == 0;', 30);
-        $this->logger->writeln("Go to OTA [".$OTA_name."] successfully");
+        $this->logger->writeln("Go to OTA [" . $OTA_name . "] successfully");
         return $OTA_name;
     }
 
@@ -124,7 +124,7 @@ class TrivagoHomePage extends \AcceptanceTester
         }
         if ($is_found) {
             $this->waitForElement('//*[@id="js_item_list_section"]', 30);
-            $this->logger->writeln("Currency has been changed to [".$expected_currency_code."]");
+            $this->logger->writeln("Currency has been changed to [" . $expected_currency_code . "]");
         } else {
             Assert::assertEquals($expected_currency_code, $currency_short_code,
                 "Unable to find currency code like [" . $expected_currency_code . "]");
@@ -138,9 +138,11 @@ class TrivagoHomePage extends \AcceptanceTester
      */
     public function validate_currency_change($expected_currency_symbol)
     {
+        $this->wait(2);
         $currencies = $this->grabMultiple('//*[@id="js_itemlist"]/li//div[1]/div[3]/section[2]/div/div[1]/div/strong');
         foreach ($currencies as $currency_symbol) {
-            $currency_symbol = preg_replace('/[0-9]+/', '', $currency_symbol);
+//            $currency_symbol = preg_replace('/[0-9]+/', '', $currency_symbol);
+            $currency_symbol = preg_replace('/[;\\/:,*?\"<>|&\'0-9+]/', '', $currency_symbol);
             Assert::assertEquals($expected_currency_symbol, $currency_symbol,
                 "Currency change has not been applied [expected : " .
                 $expected_currency_symbol . "] [found : " . $currency_symbol . "]");
@@ -189,7 +191,7 @@ class TrivagoHomePage extends \AcceptanceTester
         if ($is_found) {
             $page_number -= 1;
             $this->click('//*[@id="js_item_list_section"]/div[1]/div/button[' . $page_number . ']');
-            $this->logger->writeln("Selected page number [".$page_number."]");
+            $this->logger->writeln("Selected page number [" . $page_number . "]");
         } else {
             $this->logger->writeln("Page [" . $page_number . "] was already selected or it's not found in the list");
         }

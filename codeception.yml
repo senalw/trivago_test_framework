@@ -12,13 +12,13 @@ settings:
 extensions:
     enabled:
         - Codeception\Extension\RunProcess:
-            - java -jar "drivers/selenium-server-standalone-3.8.1.jar"
-            - cd drivers & chromedriver --url-base=/wd/hub
+            0: java -jar "/drivers/selenium-server-standalone-3.8.1.jar"
+            1: cd drivers/ & chromedriver --url-base=/wd/hub
+            sleep : 3
 
         - Codeception\Extension\RunFailed
         - Codeception\Extension\Logger
         - Codeception\Extension\TestListener
-#        - Codeception\Extension\Recorder
 
     config:
           max_files:5 #logger config
