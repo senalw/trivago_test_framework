@@ -13,7 +13,7 @@ extensions:
     enabled:
         - Codeception\Extension\RunProcess:
             0: java -jar "/drivers/selenium-server-standalone-3.8.1.jar"
-            1: cd drivers/ & chromedriver --url-base=/wd/hub
+#            1: cd drivers/ & chromedriver --url-base=/wd/hub
             sleep : 3
 
         - Codeception\Extension\RunFailed
@@ -25,7 +25,7 @@ extensions:
 modules:
     enabled:
         - tests\codeception\common\_support\Helper\AcceptanceHelper
-#reporters:
-#    xml: Codeception\PHPUnit\Log\JUnit
-#    html: Codeception\PHPUnit\ResultPrinter\HTML
-#    report: Codeception\PHPUnit\ResultPrinter\Report
+reporters:
+    xml: Codeception\PHPUnit\Log\JUnit
+    html: Codeception\PHPUnit\ResultPrinter\HTML
+    report: Codeception\PHPUnit\ResultPrinter\Report
